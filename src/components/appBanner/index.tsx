@@ -122,7 +122,7 @@ function AppBanner() {
             ))}
           </motion.div>
         </div>
-        <Spill />
+        <Spill className="-translate-y-1"/>
       </motion.div>
     </motion.section>
   );

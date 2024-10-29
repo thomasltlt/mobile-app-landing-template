@@ -162,7 +162,7 @@ function Header() {
                 }}
                 className="relative h-[532px] 2xs:h-[720px] sm:h-[648px] rounded-[3rem]"
               >
-                <div className="absolute top-1 left-2.5 w-[calc(100%-20px)] h-[calc(100%-8px)] rounded-[3rem] overflow-hidden">
+                <div className="absolute top-2.5 left-3 w-[calc(100%-24px)] h-[calc(100%-16px)] rounded-[3rem] overflow-hidden">
                   {header.screenshots.map((src, index) => (
                     <SingleScreenshot
                       key={src}

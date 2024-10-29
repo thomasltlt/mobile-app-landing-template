@@ -4,12 +4,12 @@ interface Props {
 
 function IphoneFrame({ src }: Props) {
   return (
-    <div className="relative rounded-[14%] h-full">
-      <div className="absolute top-2 bottom-2 left-0.5 right-0.5 rounded-[14%] overflow-hidden">
+    <div className="relative h-full overflow-hidden">
+      <div className="absolute top-2 bottom-2 left-2.5">
         <img
           src={src}
           alt="screenshot"
-          className="absolute rounded-[14%] overflow-hidden"
+          className="rounded-2xl h-full"
         />
       </div>
       <img
