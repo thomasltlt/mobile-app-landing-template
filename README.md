@@ -59,3 +59,6 @@ You can change the theme from src/utils/config.ts too. See all available themes 
 
 ### SVG Blobs
 - [SVG Generator](https://fffuel.co)
+
+### Screenshots
+- [App screenshots](https://www.figma.com/community/file/874598319834758320)
