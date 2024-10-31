@@ -36,7 +36,7 @@ function SingleScreenshot({ scrollYProgress, index, totalCount, src }: Props) {
       src={src}
       alt={`screenshot ${index}`}
       style={{ translateX: x, translateY: y, scale: 1 }}
-      className="absolute rounded-[3rem] overflow-hidden w-full h-full"
+      className="absolute overflow-hidden w-full h-full"
     />
   );
 }
