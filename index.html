@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mealcraft – AI meal planning that actually learns your cravings</title>
+    <meta name="description" content="Personalised recipes, smart grocery lists, nutrition on autopilot. Join thousands who've transformed their meal planning with Mealcraft.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 
+                            DEFAULT: '#004040', 
+                            50: '#f0fffe',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#004040',
+                            700: '#003333',
+                            800: '#002626',
+                            900: '#001a1a',
+                            dark: '#002626', 
+                            light: '#f0fffe' 
+                        },
+                        primary: '#004040',
+                        secondary: '#26c281',
+                        accent: { 
+                            DEFAULT: '#ffb100', 
+                            dark: '#d99400',
+                            light: '#fff4e6'
+                        },
+                        green: {
+                            DEFAULT: '#004040',
+                            50: '#f0fffe',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#004040',
+                            700: '#003333',
+                            800: '#002626',
+                            900: '#001a1a',
+                        }
+                    },
+                    fontFamily: { 
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui'] 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        .animate-fade-in { animation: fadeIn 0.6s ease-out; }
+        .animate-fade-in-up { animation: fadeInUp 0.6s ease-out; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .gradient-green {
+            background: linear-gradient(135deg, #004040 0%, #26c281 100%);
+        }
+        
+        .bg-green-pattern {
+            background-image: radial-gradient(circle at 25% 25%, #004040 2px, transparent 2px),
+                              radial-gradient(circle at 75% 75%, #26c281 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-900 bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-green-100 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-brand">
+                        <span class="bg-gradient-to-r from-brand to-secondary bg-clip-text text-transparent">
+                            Mealcraft
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#features" class="text-gray-700 hover:text-brand transition-colors duration-200">Features</a>
+                        <a href="#how-it-works" class="text-gray-700 hover:text-brand transition-colors duration-200">How it works</a>
+                        <a href="#pricing" class="text-gray-700 hover:text-brand transition-colors duration-200">Pricing</a>
+                        <a href="#faq" class="text-gray-700 hover:text-brand transition-colors duration-200">FAQ</a>
+                    </div>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <a href="/waitlist.html" class="bg-brand hover:bg-brand-dark text-white px-6 py-2 rounded-lg font-medium transition-all duration-200 hover:shadow-lg">
+                        Join Waitlist
+                    </a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-700 hover:text-brand">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 bg-gradient-to-br from-green-50 to-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <!-- Press Logos -->
+                    <div class="mb-8 flex items-center justify-center lg:justify-start space-x-6 opacity-60">
+                        <span class="text-sm text-gray-500 font-medium">Featured in:</span>
+                        <div class="flex items-center space-x-4">
+                            <span class="text-gray-400 font-bold">TechCrunch</span>
+                            <span class="text-gray-400 font-bold">Product Hunt</span>
+                            <span class="text-gray-400 font-bold">Indie Hackers</span>
+                        </div>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="text-brand">Mealcraft</span> – AI meal planning that actually 
+                        <span class="bg-gradient-to-r from-brand to-secondary bg-clip-text text-transparent">
+                            learns your cravings
+                        </span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 mb-8 max-w-2xl">
+                        Personalised recipes, smart grocery lists, nutrition on autopilot. 
+                        Join thousands who've transformed their meal planning.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="/waitlist.html" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 hover:shadow-xl hover:scale-105">
+                            Get Early Access
+                        </a>
+                        <button class="text-brand border-2 border-brand hover:bg-brand hover:text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200">
+                            Watch Demo
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Hero Image -->
+                <div class="relative">
+                    <div class="relative z-10 animate-float">
+                        <img src="/assets/mock-recipe-dashboard.png" alt="Mealcraft Recipe Dashboard" class="w-full max-w-lg mx-auto rounded-2xl shadow-2xl">
+                    </div>
+                    <div class="absolute top-8 right-8 z-20 animate-float" style="animation-delay: 0.5s;">
+                        <img src="/assets/mock-grocery-list.png" alt="Mealcraft Grocery List" class="w-48 rounded-xl shadow-xl">
+                    </div>
+                    <!-- Background Elements -->
+                    <div class="absolute -top-4 -right-4 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+                    <div class="absolute -bottom-8 -left-4 w-72 h-72 bg-accent-light rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style="animation-delay: 1s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand mb-4">
+                    Smart meal planning, simplified
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our AI learns your preferences, dietary needs, and schedule to create the perfect meal plan every week.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="text-center p-8 rounded-2xl bg-green-50 hover:bg-green-100 transition-all duration-300 hover:scale-105">
+                    <div class="w-16 h-16 bg-brand rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3l14 9-14 9V3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand mb-4">Personalised recipes in seconds</h3>
+                    <p class="text-gray-600">
+                        AI-powered recipe suggestions based on your taste preferences, dietary restrictions, and available ingredients.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="text-center p-8 rounded-2xl bg-green-50 hover:bg-green-100 transition-all duration-300 hover:scale-105">
+                    <div class="w-16 h-16 bg-brand rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m-2 0L3 3m2 10v6a1 1 0 001 1h12a1 1 0 001-1v-6M9 21v-8a1 1 0 011-1h4a1 1 0 011 1v8"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand mb-4">Auto-generated grocery lists</h3>
+                    <p class="text-gray-600">
+                        Smart shopping lists organized by store section, with quantity optimization and budget tracking.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="text-center p-8 rounded-2xl bg-green-50 hover:bg-green-100 transition-all duration-300 hover:scale-105">
+                    <div class="w-16 h-16 bg-brand rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand mb-4">Nutrition autopilot</h3>
+                    <p class="text-gray-600">
+                        Automatic nutrition tracking and optimization to help you reach your health goals effortlessly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section id="how-it-works" class="py-20 bg-green-pattern bg-green-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand mb-4">
+                    How Mealcraft works
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    From setup to your first meal in just minutes
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
+                        01
+                    </div>
+                    <h3 class="text-xl font-bold text-brand mb-4">Sign up</h3>
+                    <p class="text-gray-600">
+                        Create your account and tell us about your dietary preferences and restrictions.
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
+                        02
+                    </div>
+                    <h3 class="text-xl font-bold text-brand mb-4">Set dietary goals</h3>
+                    <p class="text-gray-600">
+                        Define your nutrition goals, cooking time, and budget preferences.
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
+                        03
+                    </div>
+                    <h3 class="text-xl font-bold text-brand mb-4">Get weekly plan</h3>
+                    <p class="text-gray-600">
+                        Receive your personalized meal plan with recipes tailored to your taste.
+                    </p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-brand text-white rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
+                        04
+                    </div>
+                    <h3 class="text-xl font-bold text-brand mb-4">One-tap groceries</h3>
+                    <p class="text-gray-600">
+                        Get your smart shopping list and start cooking amazing meals.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand mb-4">
+                    Simple, transparent pricing
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Choose the plan that works for your lifestyle
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Starter Plan -->
+                <div class="border-2 border-gray-200 rounded-2xl p-8 hover:border-brand transition-all duration-300">
+                    <h3 class="text-2xl font-bold text-brand mb-2">Starter</h3>
+                    <div class="text-4xl font-bold text-brand mb-6">Free</div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            5 meals per week
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Basic grocery lists
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Email support
+                        </li>
+                    </ul>
+                    <a href="/waitlist.html" class="w-full bg-gray-100 hover:bg-gray-200 text-brand py-3 px-6 rounded-lg font-semibold transition-all duration-200 block text-center">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="border-2 border-brand rounded-2xl p-8 relative bg-green-50 transform scale-105">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brand text-white px-4 py-1 rounded-full text-sm font-medium">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand mb-2">Pro</h3>
+                    <div class="text-4xl font-bold text-brand mb-6">€8<span class="text-lg">/mo</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Unlimited meals
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Smart grocery optimization
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Nutrition tracking
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Priority support
+                        </li>
+                    </ul>
+                    <a href="/waitlist.html" class="w-full bg-brand hover:bg-brand-dark text-white py-3 px-6 rounded-lg font-semibold transition-all duration-200 block text-center">
+                        Start Free Trial
+                    </a>
+                </div>
+                
+                <!-- Family Plan -->
+                <div class="border-2 border-gray-200 rounded-2xl p-8 hover:border-brand transition-all duration-300">
+                    <h3 class="text-2xl font-bold text-brand mb-2">Family</h3>
+                    <div class="text-4xl font-bold text-brand mb-6">€14<span class="text-lg">/mo</span></div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Up to 6 profiles
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Family meal planning
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Bulk grocery optimization
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Premium support
+                        </li>
+                    </ul>
+                    <a href="/waitlist.html" class="w-full bg-gray-100 hover:bg-gray-200 text-brand py-3 px-6 rounded-lg font-semibold transition-all duration-200 block text-center">
+                        Start Free Trial
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-green-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand mb-4">
+                    What our beta users say
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white font-bold">
+                            S
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-brand">Sarah M.</h4>
+                            <p class="text-gray-600 text-sm">Busy parent</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "Mealcraft has completely transformed our family dinners. No more 'what's for dinner?' panic!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white font-bold">
+                            J
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-brand">James R.</h4>
+                            <p class="text-gray-600 text-sm">Fitness enthusiast</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "The nutrition tracking is spot-on. I've hit all my macros without thinking about it."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center text-white font-bold">
+                            M
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-brand">Maria L.</h4>
+                            <p class="text-gray-600 text-sm">Professional chef</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">
+                        "Even as a chef, Mealcraft surprises me with creative recipe suggestions I'd never thought of."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand mb-4">
+                    Frequently asked questions
+                </h2>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- FAQ 1 -->
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-brand" onclick="toggleFaq(1)">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-brand">How does Mealcraft learn my preferences?</h3>
+                            <svg id="faq-icon-1" class="w-5 h-5 text-brand transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    <div id="faq-content-1" class="hidden px-6 pb-6">
+                        <p class="text-gray-600">
+                            Our AI analyzes your ratings, dietary restrictions, cooking frequency, and ingredient preferences to create a personalized flavor profile that improves with every interaction.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-brand" onclick="toggleFaq(2)">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-brand">Can I modify the suggested recipes?</h3>
+                            <svg id="faq-icon-2" class="w-5 h-5 text-brand transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    <div id="faq-content-2" class="hidden px-6 pb-6">
+                        <p class="text-gray-600">
+                            Absolutely! You can swap ingredients, adjust portions, modify cooking methods, and save your custom versions. The AI learns from these changes to better suit your taste.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-brand" onclick="toggleFaq(3)">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-brand">Does Mealcraft work with dietary restrictions?</h3>
+                            <svg id="faq-icon-3" class="w-5 h-5 text-brand transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    <div id="faq-content-3" class="hidden px-6 pb-6">
+                        <p class="text-gray-600">
+                            Yes! We support all major dietary requirements including vegan, vegetarian, keto, paleo, gluten-free, dairy-free, and custom restrictions. Just set your preferences during setup.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-brand" onclick="toggleFaq(4)">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-brand">How accurate is the grocery list pricing?</h3>
+                            <svg id="faq-icon-4" class="w-5 h-5 text-brand transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    <div id="faq-content-4" class="hidden px-6 pb-6">
+                        <p class="text-gray-600">
+                            We integrate with major grocery chains to provide real-time pricing and availability. Estimates are typically within 5-10% of actual checkout totals.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-brand" onclick="toggleFaq(5)">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-brand">Can I cancel anytime?</h3>
+                            <svg id="faq-icon-5" class="w-5 h-5 text-brand transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    <div id="faq-content-5" class="hidden px-6 pb-6">
+                        <p class="text-gray-600">
+                            Yes, you can cancel your subscription at any time with no penalties. You'll continue to have access until the end of your current billing period.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-green">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Ready to transform your meal planning?
+            </h2>
+            <p class="text-xl text-green-100 mb-8">
+                Join thousands of satisfied users who've simplified their cooking routine with Mealcraft.
+            </p>
+            <a href="/waitlist.html" class="bg-white text-brand px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-200 hover:shadow-xl hover:scale-105 inline-block">
+                Get Early Access Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold mb-4">Mealcraft</div>
+                    <p class="text-green-200">
+                        AI meal planning that actually learns your cravings.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2 text-green-200">
+                        <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="/waitlist.html" class="hover:text-white transition-colors">Early Access</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-green-200">
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2 text-green-200">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-green-700 mt-8 pt-8 text-center">
+                <p class="text-green-200">
+                    © 2025 Mealcraft, Ltd. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // FAQ Toggle
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Add fade-in animation to sections
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

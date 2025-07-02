@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Mealcraft Waitlist – AI meal planning coming soon</title>
+    <meta name="description" content="Be the first to experience Mealcraft's AI-powered meal planning. Join our waitlist for early access to personalized recipes and smart grocery lists.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 
+                            DEFAULT: '#004040', 
+                            50: '#f0fffe',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#004040',
+                            700: '#003333',
+                            800: '#002626',
+                            900: '#001a1a',
+                            dark: '#002626', 
+                            light: '#f0fffe' 
+                        },
+                        primary: '#004040',
+                        secondary: '#26c281',
+                        accent: { 
+                            DEFAULT: '#ffb100', 
+                            dark: '#d99400',
+                            light: '#fff4e6'
+                        },
+                        green: {
+                            DEFAULT: '#004040',
+                            50: '#f0fffe',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#004040',
+                            700: '#003333',
+                            800: '#002626',
+                            900: '#001a1a',
+                        }
+                    },
+                    fontFamily: { 
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui'] 
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        .animate-fade-in { animation: fadeIn 0.8s ease-out; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-pulse-slow { animation: pulse 3s ease-in-out infinite; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .gradient-green {
+            background: linear-gradient(135deg, #004040 0%, #26c281 100%);
+        }
+        
+        .bg-green-dots {
+            background-image: radial-gradient(circle at 25% 25%, #004040 2px, transparent 2px),
+                              radial-gradient(circle at 75% 75%, #26c281 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        
+        .success-animation {
+            animation: successPulse 1s ease-out;
+        }
+        
+        @keyframes successPulse {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .form-focus {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 64, 64, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-900 bg-gradient-to-br from-green-50 to-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-sm border-b border-green-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold text-brand">
+                        <span class="bg-gradient-to-r from-brand to-secondary bg-clip-text text-transparent">
+                            Mealcraft
+                        </span>
+                    </a>
+                </div>
+                
+                <!-- Back to home -->
+                <div>
+                    <a href="/" class="text-gray-700 hover:text-brand transition-colors duration-200 font-medium">
+                        ← Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-green-dots opacity-5"></div>
+        <div class="absolute top-20 left-10 w-32 h-32 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-float"></div>
+        <div class="absolute top-40 right-20 w-40 h-40 bg-accent-light rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-float" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-32 left-1/4 w-24 h-24 bg-green-300 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-float" style="animation-delay: 2s;"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center mb-16 animate-fade-in">
+                <!-- Badge -->
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-brand/10 text-brand font-medium text-sm mb-6">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    </svg>
+                    Early Access Program
+                </div>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                    Be the first to experience 
+                    <span class="bg-gradient-to-r from-brand to-secondary bg-clip-text text-transparent">
+                        intelligent meal planning
+                    </span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-600 mb-4 max-w-3xl mx-auto">
+                    Join thousands of food lovers waiting for Mealcraft's AI-powered meal planning that actually learns your cravings.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 mb-12">
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        No spam, ever
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 text-blue-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Early access guaranteed
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 text-purple-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Exclusive updates
+                    </div>
+                </div>
+            </div>
+
+            <!-- Waitlist Form -->
+            <div class="max-w-2xl mx-auto animate-fade-in-up">
+                <div id="form-container" class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 border border-green-100 transition-all duration-500">
+                    <!-- Form -->
+                    <form id="waitlist-form" class="space-y-6">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl md:text-3xl font-bold text-brand mb-2">Join the Waitlist</h2>
+                            <p class="text-gray-600">Get notified when Mealcraft launches</p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Email Address
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    required 
+                                    placeholder="you@example.com"
+                                    class="w-full px-6 py-4 text-lg rounded-2xl border-2 border-gray-200 focus:border-brand focus:outline-none transition-all duration-300 bg-white/90"
+                                >
+                                <div id="email-error" class="hidden text-red-500 text-sm mt-2"></div>
+                            </div>
+                            
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                    First Name (Optional)
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    placeholder="Your first name"
+                                    class="w-full px-6 py-4 text-lg rounded-2xl border-2 border-gray-200 focus:border-brand focus:outline-none transition-all duration-300 bg-white/90"
+                                >
+                            </div>
+                        </div>
+                        
+                        <button 
+                            type="submit" 
+                            id="submit-btn"
+                            class="w-full bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        >
+                            <span id="btn-text">Join the Waitlist</span>
+                            <span id="btn-loading" class="hidden">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Joining...
+                            </span>
+                        </button>
+                        
+                        <p class="text-center text-xs text-gray-500">
+                            By joining our waitlist, you agree to receive updates about Mealcraft. 
+                            <a href="#" class="text-brand hover:underline">Privacy Policy</a>
+                        </p>
+                    </form>
+
+                    <!-- Success State -->
+                    <div id="success-state" class="hidden text-center success-animation">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold text-brand mb-4">Welcome to the family! 🎉</h2>
+                        <p class="text-xl text-gray-600 mb-6">
+                            You're all set! We'll keep you posted on our progress and let you know as soon as Mealcraft is ready for you.
+                        </p>
+                        
+                        <!-- Social Sharing -->
+                        <div class="border-t border-gray-200 pt-6 mt-6">
+                            <p class="text-sm text-gray-600 mb-4">Help us spread the word!</p>
+                            <div class="flex justify-center space-x-4">
+                                <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                    Share on Twitter
+                                </a>
+                                <a href="#" class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                    Share on Facebook
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <a href="/" class="text-brand hover:text-brand-dark font-medium">
+                                ← Back to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Preview -->
+            <div class="mt-20 animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-brand mb-4">What you'll get with early access</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-green-100">
+                        <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-brand mb-2">AI-Powered Recipes</h3>
+                        <p class="text-gray-600 text-sm">Personalized meal suggestions that learn your taste preferences</p>
+                    </div>
+                    
+                    <div class="text-center p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-green-100">
+                        <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-brand mb-2">Smart Grocery Lists</h3>
+                        <p class="text-gray-600 text-sm">Automatically generated shopping lists organized by store section</p>
+                    </div>
+                    
+                    <div class="text-center p-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-green-100">
+                        <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-brand mb-2">Nutrition Tracking</h3>
+                        <p class="text-gray-600 text-sm">Effortless nutrition monitoring to help you reach your health goals</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-16 text-center animate-fade-in-up" style="animation-delay: 0.4s;">
+                <div class="grid grid-cols-3 gap-8 max-w-md mx-auto">
+                    <div>
+                        <div class="text-2xl md:text-3xl font-bold text-brand" id="user-count">2,847</div>
+                        <div class="text-sm text-gray-600">People waiting</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl md:text-3xl font-bold text-brand">30+</div>
+                        <div class="text-sm text-gray-600">Countries</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl md:text-3xl font-bold text-brand">Q1 2025</div>
+                        <div class="text-sm text-gray-600">Launch target</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white py-8 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="text-xl font-bold mb-2">Mealcraft</div>
+            <p class="text-green-200 text-sm">© 2025 Mealcraft, Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Form handling
+        const form = document.getElementById('waitlist-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnLoading = document.getElementById('btn-loading');
+        const formContainer = document.getElementById('form-container');
+        const successState = document.getElementById('success-state');
+        const emailInput = document.getElementById('email');
+        const nameInput = document.getElementById('name');
+        const emailError = document.getElementById('email-error');
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Form submission
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const name = nameInput.value.trim();
+            
+            // Validate email
+            if (!validateEmail(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                emailError.classList.remove('hidden');
+                emailInput.focus();
+                return;
+            }
+            
+            emailError.classList.add('hidden');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.classList.add('hidden');
+            btnLoading.classList.remove('hidden');
+            formContainer.classList.add('form-focus');
+            
+            // Simulate API call (replace with actual API endpoint)
+            try {
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Simulate storing the data (replace with actual API call)
+                const waitlistData = {
+                    email: email,
+                    name: name,
+                    timestamp: new Date().toISOString(),
+                    source: 'waitlist_page'
+                };
+                
+                // Store in localStorage for demo (replace with actual API)
+                localStorage.setItem('waitlistSignup', JSON.stringify(waitlistData));
+                
+                // Show success state
+                formContainer.classList.add('hidden');
+                successState.classList.remove('hidden');
+                
+                // Update counter (simulate)
+                const userCount = document.getElementById('user-count');
+                const currentCount = parseInt(userCount.textContent.replace(',', ''));
+                userCount.textContent = (currentCount + 1).toLocaleString();
+                
+                // Scroll to success message
+                successState.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Something went wrong. Please try again.');
+                
+                // Reset form state
+                submitBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnLoading.classList.add('hidden');
+                formContainer.classList.remove('form-focus');
+            }
+        });
+
+        // Form field focus effects
+        [emailInput, nameInput].forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+                this.style.borderColor = '#004040';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+                if (this.value.trim() === '') {
+                    this.style.borderColor = '#d1d5db';
+                }
+            });
+        });
+
+        // Animate counter on page load
+        function animateCounter() {
+            const counter = document.getElementById('user-count');
+            const target = 2847;
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                counter.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+
+        // Start counter animation when element comes into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.getElementById('user-count'));
+
+        // Social sharing (replace with actual URLs)
+        document.addEventListener('DOMContentLoaded', function() {
+            const twitterShareBtn = document.querySelector('a[href="#"]');
+            if (twitterShareBtn && twitterShareBtn.textContent.includes('Twitter')) {
+                twitterShareBtn.href = 'https://twitter.com/intent/tweet?text=Just%20joined%20the%20waitlist%20for%20Mealcraft%20%E2%80%93%20AI%20meal%20planning%20that%20learns%20your%20cravings!%20Join%20me:%20https://mealcraft.io/waitlist';
+            }
+        });
+    </script>
+</body>
+</html>
