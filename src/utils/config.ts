@@ -31,19 +31,17 @@ const templateConfig: TemplateConfig = {
     links: [
       { href: "/#features", title: "Features" },
       { href: "/#how-it-works", title: "How it works" },
-      { href: "/#pricing", title: "Pricing" },
       { href: "/#faq", title: "FAQ" },
     ],
   },
   topNavbar: {
-    cta: "Get the app",
+    cta: "Join Waitlist",
     disableWidthAnimation: false,
     hideAppStore: false,
     hideGooglePlay: false,
     links: [
       { href: "/#features", title: "Features" },
       { href: "/#how-it-works", title: "How it works" },
-      { href: "/#pricing", title: "Pricing" },
       { href: "/#faq", title: "FAQ" },
     ],
   },

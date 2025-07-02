@@ -8,7 +8,6 @@ import Features from "./_components/features";
 import Partners from "./_components/partners";
 import Faq from "./_components/faq";
 import HowItWorks from "./_components/howItWorks";
-import Pricing from "./_components/pricing";
 import Testimonials from "./_components/testimonials";
 
 interface Props {
@@ -24,7 +23,6 @@ function Home({ config }: Props) {
         <Partners />
         <Features />
         <HowItWorks />
-        <Pricing />
         <Testimonials />
         <Faq />
         <AppBanner />
