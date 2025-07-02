@@ -279,44 +279,30 @@ function Navbar() {
           </motion.a>
         ))}
         
-        {/* Mobile app store links */}
-        <motion.div
-          variants={{
-            show: { 
-              opacity: 1, 
-              y: 0,
-              transition: { delay: topNavbar.links.length * 0.1 + 0.2 }
-            },
-            hidden: { 
-              opacity: 0, 
-              y: "50%" 
-            },
-          }}
-          className="flex justify-center gap-4 mt-4 pt-4 border-t border-gray-200/20"
-        >
-          {googlePlayLink && (
-            <motion.a 
-              href={googlePlayLink} 
-              target="_blank"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="transition-all duration-300 hover:shadow-glow rounded-2xl overflow-hidden"
-            >
-              <img className="h-12" src="/stores/google-play.svg" alt="Google Play" />
-            </motion.a>
-          )}
-          {appStoreLink && (
-            <motion.a 
-              href={appStoreLink} 
-              target="_blank"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="transition-all duration-300 hover:shadow-glow rounded-2xl overflow-hidden"
-            >
-              <img className="h-12" src="/stores/app-store.svg" alt="App Store" />
-            </motion.a>
-          )}
-        </motion.div>
+                 {/* Mobile waitlist button */}
+         <motion.div
+           variants={{
+             show: { 
+               opacity: 1, 
+               y: 0,
+               transition: { delay: topNavbar.links.length * 0.1 + 0.2 }
+             },
+             hidden: { 
+               opacity: 0, 
+               y: "50%" 
+             },
+           }}
+           className="flex justify-center mt-4 pt-4 border-t border-gray-200/20"
+         >
+           <motion.a 
+             href="/app"
+             whileHover={{ scale: 1.05, y: -2 }}
+             whileTap={{ scale: 0.95 }}
+             className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full shadow-glow hover:shadow-glow-lg transition-all duration-300"
+           >
+             Join Waitlist
+           </motion.a>
+         </motion.div>
       </AnimatedList>
     </motion.nav>
   );

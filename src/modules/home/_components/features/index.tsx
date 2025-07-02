@@ -276,7 +276,8 @@ function Features() {
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 1.2, duration: 0.6 }}
       >
-        <motion.button
+        <motion.a
+          href="/app"
           className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full shadow-glow hover:shadow-glow-lg transition-all duration-300"
           whileHover={{ 
             scale: 1.05,
@@ -298,8 +299,8 @@ function Features() {
             }
           }}
         >
-          Explore More Features
-        </motion.button>
+          Join the Waitlist
+        </motion.a>
       </motion.div>
     </section>
   );

@@ -53,35 +53,34 @@ function AppBanner() {
             >
               {appBanner.subtitle}
             </motion.p>
-            <motion.ul
+            <motion.div
               initial={{ opacity: 0, y: "100%" }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="list-none flex gap-4 my-6 p-0 w-full"
+              className="flex justify-center my-6 w-full"
             >
-              {googlePlayLink && (
-                <li className="m-0 p-0">
-                  <a href={googlePlayLink}>
-                    <img
-                      className="h-14"
-                      alt="google play logo"
-                      src="/stores/google-play.svg"
-                    />
-                  </a>
-                </li>
-              )}
-              {appStoreLink && (
-                <li className="m-0 p-0">
-                  <a href={appStoreLink}>
-                    <img
-                      className="h-14"
-                      alt="app store logo"
-                      src="/stores/app-store.svg"
-                    />
-                  </a>
-                </li>
-              )}
-            </motion.ul>
+              <motion.a
+                href="/app"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-white text-primary font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+              >
+                <span className="relative z-10">Join the Waitlist</span>
+                {/* Button shine effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200/30 to-transparent -translate-x-full"
+                  animate={{
+                    translateX: ["-100%", "100%"],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 3,
+                    ease: "linear",
+                  }}
+                />
+              </motion.a>
+            </motion.div>
           </div>
           <motion.div
             initial="hidden"

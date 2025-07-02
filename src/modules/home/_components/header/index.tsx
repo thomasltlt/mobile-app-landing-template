@@ -158,39 +158,55 @@ function Header() {
                 {header.subtitle}
               </motion.p>
 
-              {/* Enhanced app store buttons */}
+              {/* Enhanced waitlist button */}
               <motion.div
                 variants={itemVariants}
-                className="flex gap-4 m-0 p-0 my-6"
+                className="flex justify-center m-0 p-0 my-8"
               >
-                {googlePlayLink && (
-                  <motion.a 
-                    href={googlePlayLink}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="block transition-all duration-300 hover:shadow-glow rounded-2xl overflow-hidden"
-                  >
-                    <img
-                      className="h-14 md:h-16"
-                      alt="google play logo"
-                      src="/stores/google-play.svg"
-                    />
-                  </motion.a>
-                )}
-                {appStoreLink && (
-                  <motion.a 
-                    href={appStoreLink}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="block transition-all duration-300 hover:shadow-glow rounded-2xl overflow-hidden"
-                  >
-                    <img
-                      className="h-14 md:h-16"
-                      alt="app store logo"
-                      src="/stores/app-store.svg"
-                    />
-                  </motion.a>
-                )}
+                <motion.a 
+                  href="/app"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full shadow-glow hover:shadow-glow-lg transition-all duration-300 relative overflow-hidden"
+                >
+                  <span className="relative z-10">Join the Waitlist</span>
+                  {/* Button shine effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"
+                    animate={{
+                      translateX: ["-100%", "100%"],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                      ease: "linear",
+                    }}
+                  />
+                </motion.a>
+              </motion.div>
+
+              {/* Coming Soon badges */}
+              <motion.div
+                variants={itemVariants}
+                className="flex gap-4 justify-center my-6 opacity-60"
+              >
+                <div className="flex items-center gap-2 glass rounded-full px-4 py-2">
+                  <img
+                    className="h-8"
+                    alt="google play logo"
+                    src="/stores/google-play.svg"
+                  />
+                  <span className="text-sm font-medium">Coming Soon</span>
+                </div>
+                <div className="flex items-center gap-2 glass rounded-full px-4 py-2">
+                  <img
+                    className="h-8"
+                    alt="app store logo"
+                    src="/stores/app-store.svg"
+                  />
+                  <span className="text-sm font-medium">Coming Soon</span>
+                </div>
               </motion.div>
 
               {/* Enhanced user testimonials */}
